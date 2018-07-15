@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import { Route } from 'react-router-dom'
 import SearchBook from './SearchBook'
 import MyReads from './MyReads'
+import Loading from './Loading'
 import './App.css'
 import './animate.css'
 
@@ -11,9 +12,8 @@ class BooksApp extends React.Component {
     bookList: []
   }
 
-  updateBookList(bookList) {
+  updateBookList = (bookList) => {
     BooksAPI.getAll().then(books => {
-      console.log(books)
       this.setState({
         bookList: books
       })
@@ -27,15 +27,15 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path='/search' render={({history}) => (
-            <SearchBook updateBookList={() => {
-                this.updateBookList()
-                history.push('/')
-            }} />
+        <Route path='/search' render={({ history }) => (
+          <SearchBook updateBookList={() => {
+            this.updateBookList()
+            history.push('/')
+          }} />
         )} />
         <Route exact path='/' render={() => (
-            <MyReads bookList={this.state.bookList} updateBookList={() => { this.updateBookList() }} />
-          )
+          <MyReads bookList={this.state.bookList} updateBookList={() => { this.updateBookList() }} />
+        )
         } />
       </div>
     )

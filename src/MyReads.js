@@ -2,14 +2,25 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
+import Loading from './Loading'
 
 class MyReads extends Component {
+    state = {
+        isLoading: false
+    }
+
+    setLoading = (isLoading) => {
+        this.setState({ isLoading: isLoading })
+    }
+
     moveTo = (e) => {
+        this.setLoading(true)
         const value = e.target.value
         const book = { id: e.target.dataset.bookid }
         const updateBookList = this.props.updateBookList
         BooksAPI.update(book, value).then(res => {
             updateBookList()
+            this.setLoading(false)
         })
     }
 
@@ -23,6 +34,7 @@ class MyReads extends Component {
 
         return (
             <div className="list-books">
+                <Loading isLoading={this.state.isLoading} />
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>

@@ -2,10 +2,16 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
+import Loading from './Loading'
 
 class SearchBook extends Component {
     state = {
-        booksList: []
+        booksList: [],
+        isLoading: false
+    }
+
+    setLoading = (isLoading) => {
+        this.setState({ isLoading: isLoading })
     }
 
     searchBook = (e) => {
@@ -20,17 +26,20 @@ class SearchBook extends Component {
     }
 
     moveTo = (e) => {
+        this.setLoading(true)
         const value = e.target.value
         const book = { id: e.target.dataset.bookid }
         const updateBookList = this.props.updateBookList
         BooksAPI.update(book, value).then(res => {
             updateBookList()
+            this.setLoading(false)
         })
     }
 
     render() {
         return (
             <div className="search-books">
+                <Loading isLoading={this.state.isLoading} />
                 <div className="search-books-bar animated fadeInDown">
                     <Link to='/'
                         className='close-search'>

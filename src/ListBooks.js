@@ -18,7 +18,7 @@ class ListBooks extends Component {
                                             src={book.imageLinks.thumbnail}
                                             thumbnail={book.imageLinks.smallThumbnail}
                                             aspectRatio={'128x193'} // could be '1024x768'
-                                            blur='0'
+                                            blur={0}
                                             color='#fff'
                                             lazyLoad='all'
                                         />
