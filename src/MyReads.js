@@ -9,7 +9,6 @@ class MyReads extends Component {
         const book = { id: e.target.dataset.bookid }
         const updateBookList = this.props.updateBookList
         BooksAPI.update(book, value).then(res => {
-            console.log(res)
             updateBookList()
         })
     }

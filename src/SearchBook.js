@@ -20,7 +20,12 @@ class SearchBook extends Component {
     }
 
     moveTo = (e) => {
-        console.log(e.target.value)
+        const value = e.target.value
+        const book = { id: e.target.dataset.bookid }
+        const updateBookList = this.props.updateBookList
+        BooksAPI.update(book, value).then(res => {
+            updateBookList()
+        })
     }
 
     render() {
