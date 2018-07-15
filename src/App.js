@@ -3,7 +3,6 @@ import * as BooksAPI from './BooksAPI'
 import { Route } from 'react-router-dom'
 import SearchBook from './SearchBook'
 import MyReads from './MyReads'
-import Loading from './Loading'
 import './App.css'
 import './animate.css'
 
