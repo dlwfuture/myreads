@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import SearchBook from './SearchBook'
 import MyReads from './MyReads'
 import './App.css'
+import './animate.css'
 
 class BooksApp extends React.Component {
   state = {
@@ -12,6 +13,7 @@ class BooksApp extends React.Component {
 
   updateBookList(bookList) {
     BooksAPI.getAll().then(books => {
+      console.log(books)
       this.setState({
         bookList: books
       })

@@ -29,15 +29,15 @@ class MyReads extends Component {
                 <div className="list-books-content">
                     <div>
                         <div className="bookshelf">
-                            <h2 className="bookshelf-title">Currently Reading</h2>
+                            <h2 className="bookshelf-title animated slideInLeft ">Currently Reading</h2>
                             <ListBooks bookList={currentlyReading} parentClassName='bookshelf-books' allowNone={true} moveTo={this.moveTo} />
                         </div>
                         <div className="bookshelf">
-                            <h2 className="bookshelf-title">Want to Read</h2>
+                            <h2 className="bookshelf-title animated slideInLeft">Want to Read</h2>
                             <ListBooks bookList={wantToRead} parentClassName='bookshelf-books' allowNone={true} moveTo={this.moveTo} />
                         </div>
                         <div className="bookshelf">
-                            <h2 className="bookshelf-title">Read</h2>
+                            <h2 className="bookshelf-title animated slideInLeft">Read</h2>
                             <ListBooks bookList={read} parentClassName='bookshelf-books' allowNone={true} moveTo={this.moveTo} />
                         </div>
                     </div>

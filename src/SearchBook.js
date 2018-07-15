@@ -31,7 +31,7 @@ class SearchBook extends Component {
     render() {
         return (
             <div className="search-books">
-                <div className="search-books-bar">
+                <div className="search-books-bar animated fadeInDown">
                     <Link to='/'
                         className='close-search'>
                         Close
