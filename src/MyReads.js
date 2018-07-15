@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import ListBooks from './ListBooks'
 
 class MyReads extends Component {
     render() {
@@ -19,102 +20,15 @@ class MyReads extends Component {
                     <div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Currently Reading</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {
-                                        currentlyReading && currentlyReading.map(book => (
-                                            <li key={book.id}>
-                                                <div className="book">
-                                                    <div className="book-top">
-                                                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                                        <div className="book-shelf-changer">
-                                                            <select>
-                                                                <option value="move" disabled>Move to...</option>
-                                                                <option value="currentlyReading">Currently Reading</option>
-                                                                <option value="wantToRead">Want to Read</option>
-                                                                <option value="read">Read</option>
-                                                                <option value="none">None</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div className="book-title">{book.title}</div>
-                                                    {
-                                                        book.authors && book.authors.map((author, authorIndex) => (
-                                                            <div key={authorIndex} className="book-authors">{author}</div>
-                                                        ))
-                                                    }
-                                                </div>
-                                            </li>
-                                        ))
-                                    }
-                                </ol>
-                            </div>
+                            <ListBooks bookList={currentlyReading} parentClassName='bookshelf-books' />
                         </div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Want to Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {
-                                        wantToRead && wantToRead.map(book => (
-                                            <li key={book.id}>
-                                                <div className="book">
-                                                    <div className="book-top">
-                                                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                                        <div className="book-shelf-changer">
-                                                            <select>
-                                                                <option value="move" disabled>Move to...</option>
-                                                                <option value="currentlyReading">Currently Reading</option>
-                                                                <option value="wantToRead">Want to Read</option>
-                                                                <option value="read">Read</option>
-                                                                <option value="none">None</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div className="book-title">{book.title}</div>
-                                                    {
-                                                        book.authors && book.authors.map((author, authorIndex) => (
-                                                            <div key={authorIndex} className="book-authors">{author}</div>
-                                                        ))
-                                                    }
-                                                </div>
-                                            </li>
-                                        ))
-                                    }
-                                </ol>
-                            </div>
+                            <ListBooks bookList={wantToRead} parentClassName='bookshelf-books' />
                         </div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {
-                                        read && read.map(book => (
-                                            <li key={book.id}>
-                                                <div className="book">
-                                                    <div className="book-top">
-                                                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
-                                                        <div className="book-shelf-changer">
-                                                            <select>
-                                                                <option value="move" disabled>Move to...</option>
-                                                                <option value="currentlyReading">Currently Reading</option>
-                                                                <option value="wantToRead">Want to Read</option>
-                                                                <option value="read">Read</option>
-                                                                <option value="none">None</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div className="book-title">{book.title}</div>
-                                                    {
-                                                        book.authors && book.authors.map((author, authorIndex) => (
-                                                            <div key={authorIndex} className="book-authors">{author}</div>
-                                                        ))
-                                                    }
-                                                </div>
-                                            </li>
-                                        ))
-                                    }
-                                </ol>
-                            </div>
+                            <ListBooks bookList={read} parentClassName='bookshelf-books' />
                         </div>
                     </div>
                 </div>
