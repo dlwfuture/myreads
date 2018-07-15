@@ -13,10 +13,14 @@ class SearchBook extends Component {
         searchText && searchText.length > 0 && BooksAPI.search(searchText).then(
             res => {
                 const isArray = Array.isArray(res)
-                isArray && this.setState({ booksList: res }) 
+                isArray && this.setState({ booksList: res })
                 !isArray && res && console.log(res.error)
             }
         )
+    }
+
+    moveTo = (e) => {
+        console.log(e.target.value)
     }
 
     render() {
@@ -31,7 +35,7 @@ class SearchBook extends Component {
                         <input type="text" onChange={this.searchBook} placeholder="Search by title or author" />
                     </div>
                 </div>
-                <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' />
+                <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' allowNone={false} moveTo={this.moveTo} />
             </div>
         )
     }

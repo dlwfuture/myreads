@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class ListBooks extends Component {
     render() {
-        const { bookList, parentClassName } = this.props
+        const { bookList, parentClassName, allowNone, moveTo } = this.props
 
         return (
             <div className={parentClassName}>
@@ -14,12 +14,16 @@ class ListBooks extends Component {
                                     <div className="book-top">
                                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                         <div className="book-shelf-changer">
-                                            <select>
+                                            <select value={book.shelf} onChange={moveTo} data-bookid={book.id}>
                                                 <option value="move" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
                                                 <option value="read">Read</option>
-                                                <option value="none">None</option>
+                                                {
+                                                    allowNone && (
+                                                        <option value="none">None</option>
+                                                    )
+                                                }
                                             </select>
                                         </div>
                                     </div>

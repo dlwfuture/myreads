@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
 
 class MyReads extends Component {
+    moveTo = (e) => {
+        const value = e.target.value
+        const book = { id: e.target.dataset.bookid }
+        const updateBookList = this.props.updateBookList
+        BooksAPI.update(book, value).then(res => {
+            console.log(res)
+            updateBookList()
+        })
+    }
+
     render() {
         const { bookList } = this.props
         let currentlyReading, wantToRead, read
@@ -20,15 +31,15 @@ class MyReads extends Component {
                     <div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Currently Reading</h2>
-                            <ListBooks bookList={currentlyReading} parentClassName='bookshelf-books' />
+                            <ListBooks bookList={currentlyReading} parentClassName='bookshelf-books' allowNone={true} moveTo={this.moveTo} />
                         </div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Want to Read</h2>
-                            <ListBooks bookList={wantToRead} parentClassName='bookshelf-books' />
+                            <ListBooks bookList={wantToRead} parentClassName='bookshelf-books' allowNone={true} moveTo={this.moveTo} />
                         </div>
                         <div className="bookshelf">
                             <h2 className="bookshelf-title">Read</h2>
-                            <ListBooks bookList={read} parentClassName='bookshelf-books' />
+                            <ListBooks bookList={read} parentClassName='bookshelf-books' allowNone={true} moveTo={this.moveTo} />
                         </div>
                     </div>
                 </div>
