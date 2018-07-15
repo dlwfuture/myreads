@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-class ListBooks extends Component {
+class MyReads extends Component {
     render() {
         const { bookList } = this.props
         let currentlyReading, wantToRead, read
@@ -128,4 +128,4 @@ class ListBooks extends Component {
     }
 }
 
-export default ListBooks
+export default MyReads
