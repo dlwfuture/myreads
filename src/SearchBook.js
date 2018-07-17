@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
@@ -8,6 +9,10 @@ class SearchBook extends Component {
     state = {
         booksList: [],
         isLoading: false
+    }
+
+    static propTypes = {
+        updateBookList: PropTypes.func.isRequired
     }
 
     setLoading = (isLoading) => {
@@ -20,7 +25,7 @@ class SearchBook extends Component {
             res => {
                 const isArray = Array.isArray(res)
                 isArray && this.setState({ booksList: res })
-                !isArray && res && console.log(res.error)
+                !isArray && res && console.error(`Error on Function:'BooksAPI.search()', Params: 'searchText: ${searchText}', Error: '${res.error}'`)
             }
         )
     }

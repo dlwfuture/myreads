@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Image from 'lqip-react'
 
 class ListBooks extends Component {
+    static propTypes = {
+        bookList: PropTypes.array.isRequired,
+        parentClassName: PropTypes.string.isRequired,
+        allowNone: PropTypes.bool.isRequired,
+        moveTo: PropTypes.func.isRequired
+    }
+
     render() {
         const { bookList, parentClassName, allowNone, moveTo } = this.props
 

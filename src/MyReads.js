@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
@@ -7,6 +8,11 @@ import Loading from './Loading'
 class MyReads extends Component {
     state = {
         isLoading: false
+    }
+
+    static propTypes = {
+        bookList: PropTypes.array.isRequired,
+        updateBookList: PropTypes.func.isRequired
     }
 
     setLoading = (isLoading) => {
