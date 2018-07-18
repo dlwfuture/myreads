@@ -23,9 +23,9 @@ class ListBooks extends Component {
                                     <div className="book-top">
                                         <div className="book-cover" style={{ width: 128, height: 193 }}>
                                         <Image
-                                            src={book.imageLinks.thumbnail}
-                                            thumbnail={book.imageLinks.smallThumbnail}
-                                            aspectRatio={'128x193'} // could be '1024x768'
+                                            src={book && book.imageLinks ? book.imageLinks.thumbnail : ''}
+                                            thumbnail={book && book.imageLinks ? book.imageLinks.smallThumbnail : ''}
+                                            aspectRatio={'128x193'}
                                             blur={0}
                                             color='#fff'
                                             lazyLoad='all'
