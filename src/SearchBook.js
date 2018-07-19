@@ -10,7 +10,8 @@ class SearchBook extends Component {
     state = {
         booksList: [],
         isLoading: false,
-        showBookShelfMessage: false
+        showBookShelfMessage: false,
+        isSearching: false
     }
 
     static propTypes = {
@@ -22,16 +23,17 @@ class SearchBook extends Component {
     }
 
     searchBook = (searchText) => {
+        this.setState({isSearching: true})
         if (searchText && searchText.length > 0){
             BooksAPI.search(searchText).then(
                 res => {
                     const isArray = Array.isArray(res)
-                    this.setState({ booksList: res && isArray ? res : [], showBookShelfMessage: true })
+                    this.setState({ booksList: res && isArray ? res : [], showBookShelfMessage: true, isSearching: false })
                     !isArray && res && console.error(`Error on Function:'BooksAPI.search()', Params: 'searchText: ${searchText}', Error: '${res.error}'`)
                 }
             )
         } else{
-            this.setState({ booksList: [], showBookShelfMessage: true })
+            this.setState({ booksList: [], showBookShelfMessage: true, isSearching: false })
         }
     }
 
@@ -56,7 +58,7 @@ class SearchBook extends Component {
                         Close
                     </Link>
                     <div className="search-books-input-wrapper">
-                        <SearchInput onSearch={this.searchBook} placeHolder="Search by title or author" />
+                        <SearchInput onSearch={this.searchBook} isSearching={this.state.isSearching} placeHolder="Search by title or author" />
                     </div>
                 </div>
                 <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' allowNone={false} moveTo={this.moveTo} showBookShelfMessage={this.state.showBookShelfMessage} />

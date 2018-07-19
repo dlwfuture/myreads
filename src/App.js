@@ -5,6 +5,7 @@ import SearchBook from './SearchBook'
 import MyReads from './MyReads'
 import './App.css'
 import './animate.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 class BooksApp extends React.Component {
   state = {

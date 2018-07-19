@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import FontAwesome from 'react-fontawesome'
 
 class SearchInput extends Component {
     state = {
-        typingTimeOut: 300,
+        typingTimeOut: 500,
         timeOut: null,
         searchText: ''
     }
 
     static propTypes = {
         onSearch: PropTypes.func.isRequired,
-        placeHolder: PropTypes.string.isRequired
+        placeHolder: PropTypes.string.isRequired,
+        isSearching: PropTypes.bool.isRequired
     }
 
     changeSearch = (event) => {
+        this.setState({isLoading: true})
         if (this.state.timeOut){
             clearTimeout(this.state.timeOut)
         }
@@ -24,9 +27,16 @@ class SearchInput extends Component {
     }
 
     render() {
-        const { placeHolder } = this.props
+        const { placeHolder, isSearching } = this.props
         return (
-            <input type="text" onChange={this.changeSearch} placeholder={placeHolder} />
+            <div>
+                <input type="text" onChange={this.changeSearch} placeholder={placeHolder} />
+                {
+                    isSearching && (
+                        <FontAwesome className='search-loader' size='2x' name='spinner' spin />
+                    )
+                }
+            </div>
         )
     }
 }
