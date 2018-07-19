@@ -11,10 +11,17 @@ class ListBooks extends Component {
     }
 
     render() {
-        const { bookList, parentClassName, allowNone, moveTo } = this.props
+        const { bookList, parentClassName, allowNone, moveTo, showBookShelfMessage } = this.props
 
         return (
             <div className={parentClassName}>
+                {
+                    (!bookList || !bookList.length) && showBookShelfMessage && (
+                        <div>
+                            No books found
+                        </div>
+                    )
+                }
                 <ol className="books-grid">
                     {
                         bookList && bookList.map(book => (

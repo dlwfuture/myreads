@@ -66,6 +66,11 @@ body, .app {
   font-size: 0;
 }
 
+.bookshelf-message {
+  font-size: 1.25em;
+  color: #ccc;
+}
+
 /* search page */
 
 .search-books-bar {

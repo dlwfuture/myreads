@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
 import Loading from './Loading'
+import SearchInput from './SearchInput'
 
 class SearchBook extends Component {
     state = {
         booksList: [],
-        isLoading: false
+        isLoading: false,
+        showBookShelfMessage: false
     }
 
     static propTypes = {
@@ -19,15 +21,18 @@ class SearchBook extends Component {
         this.setState({ isLoading: isLoading })
     }
 
-    searchBook = (e) => {
-        const searchText = e.target.value
-        searchText && searchText.length > 0 && BooksAPI.search(searchText).then(
-            res => {
-                const isArray = Array.isArray(res)
-                isArray && this.setState({ booksList: res })
-                !isArray && res && console.error(`Error on Function:'BooksAPI.search()', Params: 'searchText: ${searchText}', Error: '${res.error}'`)
-            }
-        )
+    searchBook = (searchText) => {
+        if (searchText && searchText.length > 0){
+            BooksAPI.search(searchText).then(
+                res => {
+                    const isArray = Array.isArray(res)
+                    this.setState({ booksList: res && isArray ? res : [], showBookShelfMessage: true })
+                    !isArray && res && console.error(`Error on Function:'BooksAPI.search()', Params: 'searchText: ${searchText}', Error: '${res.error}'`)
+                }
+            )
+        } else{
+            this.setState({ booksList: [], showBookShelfMessage: true })
+        }
     }
 
     moveTo = (e) => {
@@ -51,10 +56,11 @@ class SearchBook extends Component {
                         Close
                     </Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" onChange={this.searchBook} placeholder="Search by title or author" />
+                        <SearchInput onSearch={this.searchBook} placeHolder="Search by title or author" typingTimeOut={500}></SearchInput>
+
                     </div>
                 </div>
-                <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' allowNone={false} moveTo={this.moveTo} />
+                <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' allowNone={false} moveTo={this.moveTo} showBookShelfMessage={this.state.showBookShelfMessage} />
             </div>
         )
     }
