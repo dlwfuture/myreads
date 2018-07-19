@@ -56,8 +56,7 @@ class SearchBook extends Component {
                         Close
                     </Link>
                     <div className="search-books-input-wrapper">
-                        <SearchInput onSearch={this.searchBook} placeHolder="Search by title or author" typingTimeOut={500}></SearchInput>
-
+                        <SearchInput onSearch={this.searchBook} placeHolder="Search by title or author" />
                     </div>
                 </div>
                 <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' allowNone={false} moveTo={this.moveTo} showBookShelfMessage={this.state.showBookShelfMessage} />

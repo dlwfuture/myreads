@@ -3,14 +3,13 @@ import PropTypes from 'prop-types'
 
 class SearchInput extends Component {
     state = {
-        typingTimeOut: 100,
+        typingTimeOut: 300,
         timeOut: null,
         searchText: ''
     }
 
     static propTypes = {
         onSearch: PropTypes.func.isRequired,
-        typingTimeOut: PropTypes.number.isRequired,
         placeHolder: PropTypes.string.isRequired
     }
 
@@ -20,13 +19,12 @@ class SearchInput extends Component {
         }
         this.setState({
             searchText: event.target.value,
-            timeOut: setTimeout(()=> this.props.onSearch(this.state.searchText), this.state.timeOut)
+            timeOut: setTimeout(()=> this.props.onSearch(this.state.searchText), this.state.typingTimeOut)
         })
     }
 
     render() {
-        const { placeHolder, typingTimeOut } = this.props
-        this.setState({timeOut: typingTimeOut})
+        const { placeHolder } = this.props
         return (
             <input type="text" onChange={this.changeSearch} placeholder={placeHolder} />
         )
