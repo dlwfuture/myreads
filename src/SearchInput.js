@@ -26,7 +26,7 @@ class SearchInput extends Component {
 
     render() {
         const { placeHolder, typingTimeOut } = this.props
-        this.state.timeOut = typingTimeOut
+        this.setState({timeOut: typingTimeOut})
         return (
             <input type="text" onChange={this.changeSearch} placeholder={placeHolder} />
         )
