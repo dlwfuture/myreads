@@ -9,8 +9,9 @@ class SearchInput extends Component {
     }
 
     static propTypes = {
-        searchText: PropTypes.func.isRequired,
-        typingTimeOut: PropTypes.number.isRequired
+        onSearch: PropTypes.func.isRequired,
+        typingTimeOut: PropTypes.number.isRequired,
+        placeHolder: PropTypes.string.isRequired
     }
 
     changeSearch = (event) => {
