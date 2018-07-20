@@ -30,7 +30,6 @@ class BooksApp extends React.Component {
         <Route path='/search' render={({ history }) => (
           <SearchBook updateBookList={() => {
             this.updateBookList()
-            history.push('/')
           }} />
         )} />
         <Route exact path='/' render={() => (

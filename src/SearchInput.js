@@ -30,7 +30,7 @@ class SearchInput extends Component {
         const { placeHolder, isSearching } = this.props
         return (
             <div>
-                <input type="text" onChange={this.changeSearch} placeholder={placeHolder} />
+                <input autoFocus={true} type="text" onChange={this.changeSearch} placeholder={placeHolder} />
                 {
                     isSearching && (
                         <FontAwesome className='search-loader' size='2x' name='spinner' spin />

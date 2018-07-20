@@ -37,12 +37,10 @@ class SearchBook extends Component {
         }
     }
 
-    moveTo = (e) => {
+    moveTo = (book) => {
         this.setLoading(true)
-        const value = e.target.value
-        const book = { id: e.target.dataset.bookid }
         const updateBookList = this.props.updateBookList
-        BooksAPI.update(book, value).then(res => {
+        BooksAPI.update(book, book.shelf).then(res => {
             updateBookList()
             this.setLoading(false)
         })
@@ -61,7 +59,7 @@ class SearchBook extends Component {
                         <SearchInput onSearch={this.searchBook} isSearching={this.state.isSearching} placeHolder="Search by title or author" />
                     </div>
                 </div>
-                <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' allowNone={false} moveTo={this.moveTo} showBookShelfMessage={this.state.showBookShelfMessage} />
+                <ListBooks bookList={this.state.booksList} parentClassName='search-books-results' allowNone={true} moveTo={this.moveTo} showBookShelfMessage={this.state.showBookShelfMessage} />
             </div>
         )
     }

@@ -6,7 +6,7 @@ class Loading extends Component{
         const { isLoading } = this.props
 
         return isLoading && (
-            <div class='loader-holder animated fadeIn'>
+            <div className='loader-holder animated fadeIn'>
                 <ReactLoading type={'spinningBubbles'} color={'#fff'} height={'15%'} width={'15%'} />
             </div>
         )

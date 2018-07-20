@@ -19,12 +19,10 @@ class MyReads extends Component {
         this.setState({ isLoading: isLoading })
     }
 
-    moveTo = (e) => {
+    moveTo = (book) => {
         this.setLoading(true)
-        const value = e.target.value
-        const book = { id: e.target.dataset.bookid }
         const updateBookList = this.props.updateBookList
-        BooksAPI.update(book, value).then(res => {
+        BooksAPI.update(book, book.shelf).then(res => {
             updateBookList()
             this.setLoading(false)
         })

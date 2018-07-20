@@ -39,7 +39,11 @@ class ListBooks extends Component {
                                         />
                                         </div>
                                         <div className="book-shelf-changer">
-                                            <select value={book.shelf || 'move'} onChange={moveTo} data-bookid={book.id}>
+                                            <select 
+                                                value={book.shelf || 'none'} onChange={(e) => {
+                                                    book.shelf = e.target.value
+                                                    moveTo(book)
+                                            }}>
                                                 <option value="move" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
