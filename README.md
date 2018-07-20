@@ -8,9 +8,9 @@ You can move between the shelfs and search for books to add on them.
 It uses npm for building the project and running it.
 To easily build you need to prompt 2 commands:
 * npm install
-  This will install all the project dependencies
+  >This will install all the project dependencies
 * npm start
-  This will build and start the project
+  >This will build and start the project
 
 ## Todo
 * Cover testing in components
