@@ -25,6 +25,7 @@ class SearchBook extends Component {
     searchBook = (searchText) => {
         this.setState({isSearching: true})
         if (searchText && searchText.length > 0){
+            searchText = searchText.trim()
             BooksAPI.search(searchText).then(
                 res => {
                     const isArray = Array.isArray(res)
@@ -33,7 +34,7 @@ class SearchBook extends Component {
                 }
             )
         } else{
-            this.setState({ booksList: [], showBookShelfMessage: true, isSearching: false })
+            this.setState({ booksList: [], showBookShelfMessage: false, isSearching: false })
         }
     }
 
