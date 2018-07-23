@@ -15,11 +15,20 @@ class SearchBook extends Component {
     }
 
     static propTypes = {
-        updateBookList: PropTypes.func.isRequired
+        updateBookList: PropTypes.func.isRequired,
+        bookShelfList: PropTypes.array.isRequired
     }
 
     setLoading = (isLoading) => {
         this.setState({ isLoading: isLoading })
+    }
+
+    updateSearchBookShelf = (searchBookList) => {
+        searchBookList.forEach(book => {
+            const shelfBook = book.shelf = this.props.bookShelfList.find(shelfBook => shelfBook.id === book.id)
+            book.shelf = shelfBook ? shelfBook.shelf : book.shelf
+        })
+        return searchBookList
     }
 
     searchBook = (searchText) => {
@@ -29,10 +38,10 @@ class SearchBook extends Component {
             BooksAPI.search(searchText).then(
                 res => {
                     const isArray = Array.isArray(res)
-                    this.setState({ booksList: res && isArray ? res : [], showBookShelfMessage: true, isSearching: false })
+                    this.setState({ booksList: res && isArray ? this.updateSearchBookShelf(res) : [], showBookShelfMessage: true, isSearching: false })
                     !isArray && res && console.error(`Error on Function:'BooksAPI.search()', Params: 'searchText: ${searchText}', Error: '${res.error}'`)
                 }
-            )
+            ).catch(error => { console.error(error) })
         } else{
             this.setState({ booksList: [], showBookShelfMessage: false, isSearching: false })
         }

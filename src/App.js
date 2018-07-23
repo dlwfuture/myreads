@@ -12,11 +12,14 @@ class BooksApp extends React.Component {
     bookList: []
   }
 
-  updateBookList = (bookList) => {
+  updateBookList() {
     BooksAPI.getAll().then(books => {
       this.setState({
         bookList: books
       })
+    })
+    .catch(error => { 
+      console.error(error)
     })
   }
 
@@ -27,15 +30,12 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route path='/search' render={({ history }) => (
-          <SearchBook updateBookList={() => {
-            this.updateBookList()
-          }} />
+        <Route path='/search' render={() => (
+          <SearchBook bookShelfList={this.state.bookList} updateBookList={this.updateBookList} />
         )} />
         <Route exact path='/' render={() => (
-          <MyReads bookList={this.state.bookList} updateBookList={() => { this.updateBookList() }} />
-        )
-        } />
+          <MyReads bookList={this.state.bookList} updateBookList={this.updateBookList} />
+        )} />
       </div>
     )
   }

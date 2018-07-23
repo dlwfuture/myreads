@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactLoading from 'react-loading'
+import PropTypes from 'prop-types'
 
-class Loading extends Component{
-    render(){
-        const { isLoading } = this.props
-
-        return isLoading && (
-            <div className='loader-holder animated fadeIn'>
+const Loading = (props) => {
+    return props.isLoading && (
+        <div className='loader-holder animated fadeIn'>
                 <ReactLoading type={'spinningBubbles'} color={'#fff'} height={'15%'} width={'15%'} />
-            </div>
-        )
-    }
+        </div>
+    )
+}
+
+Loading.propTypes = {
+    isLoading: PropTypes.bool.isRequired
 }
 
 export default Loading
