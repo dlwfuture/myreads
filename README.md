@@ -14,3 +14,6 @@ To easily build you need to prompt 2 commands:
 
 ## Todo
 * Cover testing in components
+
+## Live Preview
+http://preview-myreads.danielwozniak.com.br/
